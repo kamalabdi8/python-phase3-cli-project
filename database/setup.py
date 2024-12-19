@@ -3,7 +3,7 @@ from .connection import get_db_connection
 def create_tables():
     conn = get_db_connection()
     cursor = conn.cursor()
-
+    
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS restaurants (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,13 +24,13 @@ def create_tables():
         CREATE TABLE IF NOT EXISTS orders (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             description TEXT NOT NULL,
-            order_quantity INTEGER NOT NULL,
+            quantity INTEGER NOT NULL,  -- Ensure this exists
             customer_id INTEGER NOT NULL,
             restaurant_id INTEGER NOT NULL,
             FOREIGN KEY (customer_id) REFERENCES customers (id),
             FOREIGN KEY (restaurant_id) REFERENCES restaurants (id)
         )
     ''')
-
+    
     conn.commit()
     conn.close()

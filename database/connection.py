@@ -1,6 +1,6 @@
 import sqlite3
 
-DATABASE_NAME = './database/restaurant.db'
+DATABASE_NAME = './restaurant.db'
 
 def get_db_connection():
     conn = sqlite3.connect(DATABASE_NAME)

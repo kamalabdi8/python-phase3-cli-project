@@ -13,10 +13,10 @@ class Customer:
         from models.order import Order
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute('SELECT id, description FROM orders WHERE customer_id = ?', (self.id,))
+        cursor.execute('SELECT * FROM orders WHERE customer_id = ?', (self.id,))
         orders = cursor.fetchall()
         conn.close()
-        return [Order(order['id'], order['description'], order['customer_id'], order['restaurant_id']) for order in orders]
+        return [Order(order['id'], order['description'], order['quantity'], order['customer_id'], order['restaurant_id']) for order in orders]
 
     @classmethod
     def create_customer(cls, name, email):
